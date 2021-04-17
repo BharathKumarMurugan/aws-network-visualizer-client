@@ -6,7 +6,7 @@ class VPC extends Component {
         super(props);
         this.state = {
             vpcs: [],
-            isLoading: false,
+            isLoading: true,
             isError: false,
         };
     }

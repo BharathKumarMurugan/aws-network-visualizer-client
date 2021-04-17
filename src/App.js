@@ -1,32 +1,25 @@
 import VPC from "./components/VPC";
+import "./App.css";
+import NavBar from "./components/NavBar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Jumbotron from "./components/Jumbotron";
 
 function App() {
     return (
-        <div>
-            <div className="custom-jumbotron">
-                <div className="container">
-                    <h1 className="display-4 text-center">
-                        VPC Network Visualizer
-                    </h1>
-                    <div className="clearfix">
-                        <div className="text-left">Account Name</div>
-                        <div className="text-right">Region</div>
-                    </div>
-                    {/* <div className="row">
-                        <div className="col-xs-6 float-left">
-                            Account Name
-                            <span className="float-left">Account Name</span>
-                        </div>
-                        <div className="col-xs-6 float-right">
-                            Region
-                            <span className="float-right">Region</span>
-                        </div>
-                    </div> */}
-                </div>
+        <Router>
+            <div>
+                <NavBar />
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/vpc" component={VPC} />
+                </Switch>
             </div>
-            {/* <VPC /> */}
-        </div>
+        </Router>
     );
 }
+
+const Home = () => {
+    return <Jumbotron />;
+};
 
 export default App;
