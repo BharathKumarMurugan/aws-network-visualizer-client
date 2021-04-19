@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
     const NavStyle = {
+        color: "white",
         textDecoration: "none",
     };
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div className="container-fluid">
                 <Link to="/" style={NavStyle}>
-                    <a class="navbar-brand">Logo</a>
+                    Logo
                 </Link>
                 <button
-                    class="navbar-toggler"
+                    className="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"
@@ -20,19 +21,15 @@ function NavBar() {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span class="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
                         <Link to="/" style={NavStyle}>
-                            <li class="nav-item">
-                                <a class="nav-link">Home</a>
-                            </li>
+                            <li className="nav-item">Home</li>
                         </Link>
                         <Link to="/vpc" style={NavStyle}>
-                            <li class="nav-item">
-                                <a class="nav-link">VPC</a>
-                            </li>
+                            <li className="nav-item">VPC</li>
                         </Link>
                     </ul>
                 </div>
