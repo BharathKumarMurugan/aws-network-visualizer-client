@@ -1,32 +1,32 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 
-class Subnet extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            subnets: [],
-            isLoading: false,
-            isError: false,
-        };
-    }
-    async componentDidMount() {
-        this.setState({ isLoading: true });
-        const response = await fetch("http://localhost:5000/api/");
+function Subnet() {
+    useEffect(() => {
+        fetchSubnets();
+    }, []);
+    const [subnets, setSubnets] = useState([]);
+    const [isLoading, setIsLoading, isError, setIsError] = useState(false);
+    const fetchSubnets = async () => {
+        setIsLoading(true);
+        const response = await fetch("");
         if (response.ok) {
             const subnets = await response.json();
-            this.setState({ subnets, isLoading: false });
+            console.log(subnets);
+            setSubnets(subnets);
+            setIsLoading(false);
         } else {
-            this.setState({ isError: true, isLoading: false });
+            setIsError(true);
+            setIsLoading(false);
         }
-    }
-    renderTableHeader = () => {
-        return Object.keys(this.state.subnets[0]).map((attr) => (
+    };
+    const renderTableHeader = () => {
+        return Object.keys(subnets[0]).map((attr) => (
             <th key={attr}>{attr}</th>
         ));
     };
-    renderTableRow = () => {
-        return this.state.subnets.map((subnet) => {
+    const renderTableRow = () => {
+        return subnets.map((subnet) => {
             return (
                 <tr key={subnet.Id}>
                     <td>{subnet.Id}</td>
@@ -40,23 +40,20 @@ class Subnet extends Component {
             );
         });
     };
-    render() {
-        const { subnets, isLoading, isError } = this.state;
-        if (isLoading) return <Loader />;
-        if (isError) return <div>Error...</div>;
-        return subnets.length > 0 ? (
-            <div className="table-reponsive">
-                <table className="table table-hover">
-                    <thead className="thead-dark">
-                        <tr>{this.renderTableHeader()}</tr>
-                    </thead>
-                    <tbody>{this.renderTableRow()}</tbody>
-                </table>
-            </div>
-        ) : (
-            <div>0 Subnets</div>
-        );
-    }
+    if (isLoading) return <Loader />;
+    if (isError) return <div>Error...</div>;
+    return subnets.length > 0 ? (
+        <div className="table-reponsive">
+            <table className="table table-hover">
+                <thead className="thead-dark">
+                    <tr>{this.renderTableHeader()}</tr>
+                </thead>
+                <tbody>{this.renderTableRow()}</tbody>
+            </table>
+        </div>
+    ) : (
+        <div>0 Subnets</div>
+    );
 }
 
 export default Subnet;
