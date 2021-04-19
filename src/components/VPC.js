@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 class VPC extends Component {
     constructor(props) {
@@ -31,7 +32,14 @@ class VPC extends Component {
         return this.state.vpcs.map((vpc) => {
             return (
                 <tr key={vpc.Id}>
-                    <td>{vpc.Id}</td>
+                    <td>
+                        <Link
+                            to={`/vpc/${vpc.Id}`}
+                            style={{ textDecoration: "none" }}
+                        >
+                            {vpc.Id}
+                        </Link>
+                    </td>
                     <td>{vpc.CidrBlock}</td>
                     <td>{vpc.Tenancy}</td>
                     <td>{vpc.DhcpOptionsId}</td>
