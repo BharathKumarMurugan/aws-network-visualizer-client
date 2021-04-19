@@ -1,8 +1,10 @@
+import React from "react";
 import VPC from "./components/VPC";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Jumbotron from "./components/Jumbotron";
+import AllItems from "./components/AllItem";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
     return (
@@ -10,16 +12,13 @@ function App() {
             <div>
                 <NavBar />
                 <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/vpc" component={VPC} />
+                    <Route path="/" exact component={Jumbotron} />
+                    <Route path="/vpc" exact component={VPC} />
+                    <Route path="/vpc/:id" component={AllItems} />
                 </Switch>
             </div>
         </Router>
     );
 }
-
-const Home = () => {
-    return <Jumbotron />;
-};
 
 export default App;
