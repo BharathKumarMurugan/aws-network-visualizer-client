@@ -46,9 +46,9 @@ function Subnet() {
         <div className="table-reponsive">
             <table className="table table-hover">
                 <thead className="thead-dark">
-                    <tr>{this.renderTableHeader()}</tr>
+                    <tr>{renderTableHeader()}</tr>
                 </thead>
-                <tbody>{this.renderTableRow()}</tbody>
+                <tbody>{renderTableRow()}</tbody>
             </table>
         </div>
     ) : (
