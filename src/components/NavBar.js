@@ -9,7 +9,7 @@ function NavBar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container-fluid">
-                <Link to="/" style={NavStyle}>
+                <Link to="/" className="navbar-brand">
                     Logo
                 </Link>
                 <button
@@ -26,10 +26,14 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <Link to="/" style={NavStyle}>
-                            <li className="nav-item">Home</li>
+                            <li className="nav-item">
+                                <span className="nav-link">Home</span>
+                            </li>
                         </Link>
                         <Link to="/vpc" style={NavStyle}>
-                            <li className="nav-item">VPC</li>
+                            <li className="nav-item">
+                                <span className="nav-link">VPC</span>
+                            </li>
                         </Link>
                     </ul>
                 </div>
