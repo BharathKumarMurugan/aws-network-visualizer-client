@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
+import Vpc from "./Vpc";
+import Subnet from "./Subnet";
+import AllSecurityGroups from "./AllSecurityGroup";
+import RouteTable from "./RouteTable";
+import InternetGateway from "./InternetGateway";
 
 function AllItems({ match }) {
     useEffect(() => {
@@ -11,7 +16,9 @@ function AllItems({ match }) {
 
     const fetchItems = async () => {
         setIsLoading(false);
-        const response = await fetch("");
+        const response = await fetch(
+            `http://localhost:5000/api/networks/vpc/?vpcId=${match.params.id}`
+        );
         if (response.ok) {
             const items = await response.json();
             console.log(items);
