@@ -2,7 +2,10 @@ import React from "react";
 
 function Jumbotron() {
     return (
-        <div className="p-5 mb-4 bg-light">
+        <div
+            className="p-5 mb-4 bg-light shadow-sm bg-body rounded"
+            style={{ backgroundColor: "#eee" }}
+        >
             <div className="container-fluid py-5">
                 <h1 className="display-5 fw-bold">
                     AWS Infrastructure Visualizer
