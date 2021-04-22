@@ -40,11 +40,11 @@ class AllVPC extends Component {
                             {vpc.Id}
                         </Link>
                     </td>
+                    <td>{vpc.Name}</td>
                     <td>{vpc.CidrBlock}</td>
                     <td>{vpc.Tenancy}</td>
                     <td>{vpc.DhcpOptionsId}</td>
                     <td>{vpc.State}</td>
-                    <td>{vpc.Name}</td>
                 </tr>
             );
         });
@@ -58,13 +58,23 @@ class AllVPC extends Component {
             return <div>Error...</div>;
         }
         return vpcs.length > 0 ? (
-            <div className="table-reponsive">
-                <table className="table table-hover">
-                    <thead className="thead-dark">
-                        <tr>{this.renderTableHeader()}</tr>
-                    </thead>
-                    <tbody>{this.renderTableRow()}</tbody>
-                </table>
+            <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+                <div className="card-body">
+                    <h5 className="card-title">
+                        VPC{" "}
+                        <span className="badge rounded-pill bg-primary">
+                            {vpcs.length}
+                        </span>
+                    </h5>
+                    <div className="table-reponsive">
+                        <table className="table table-hover">
+                            <thead className="thead-dark">
+                                <tr>{this.renderTableHeader()}</tr>
+                            </thead>
+                            <tbody>{this.renderTableRow()}</tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         ) : (
             <div>0 VPCs</div>
