@@ -13,8 +13,10 @@ function App() {
                 <NavBar />
                 <Switch>
                     <Route path="/" exact component={Jumbotron} />
-                    <Route path="/vpc" exact component={AllVPC} />
-                    <Route path="/vpc/:id" component={AllItems} />
+                    <div className="container-fluid">
+                        <Route path="/vpc" exact component={AllVPC} />
+                        <Route path="/vpc/:id" component={AllItems} />
+                    </div>
                 </Switch>
             </div>
         </Router>
