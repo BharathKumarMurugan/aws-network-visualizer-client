@@ -36,12 +36,14 @@ function InternetGateway({ items }) {
             </div>
         </div>
     ) : (
-        <h5 className="card-title">
-            Internet Gateway{" "}
-            <span className="badge rounded-pill bg-primary">
-                {items.length}
-            </span>
-        </h5>
+        <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+            <h5 className="card-title">
+                Internet Gateway{" "}
+                <span className="badge rounded-pill bg-primary">
+                    {items.length}
+                </span>
+            </h5>
+        </div>
     );
 }
 
