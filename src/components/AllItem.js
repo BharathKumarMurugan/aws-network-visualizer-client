@@ -33,9 +33,10 @@ function AllItems({ match }) {
     return items.length > 0 ? (
         <div>
             <Vpc items={items[0]} />
-            <Subnet items={items[1]} />
-            <InternetGateway items={items[2]} />
-            <AllSecurityGroups items={items[3]} />
+            <InternetGateway items={items[1]} />
+            <Subnet items={items[2]} />
+            <RouteTable items={items[3]} />
+            <AllSecurityGroups items={items[4]} />
         </div>
     ) : (
         <div>0 Items</div>
