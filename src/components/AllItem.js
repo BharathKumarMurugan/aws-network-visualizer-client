@@ -5,6 +5,7 @@ import Subnet from "./Subnet";
 import AllSecurityGroups from "./AllSecurityGroup";
 import RouteTable from "./RouteTable";
 import InternetGateway from "./InternetGateway";
+import NatGateway from "./NatGateway";
 
 function AllItems({ match }) {
     useEffect(() => {
@@ -36,6 +37,7 @@ function AllItems({ match }) {
             <InternetGateway items={items[1]} />
             <Subnet items={items[2]} />
             <RouteTable items={items[3]} />
+            <NatGateway items={items[5]} />
             <AllSecurityGroups items={items[4]} />
         </div>
     ) : (
