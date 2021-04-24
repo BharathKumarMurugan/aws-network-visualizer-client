@@ -41,7 +41,7 @@ function Subnet({ items }) {
             </div>
         </div>
     ) : (
-        <div>
+        <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
             <h5 className="card-title">
                 Subnet{" "}
                 <span className="badge rounded-pill bg-primary">
