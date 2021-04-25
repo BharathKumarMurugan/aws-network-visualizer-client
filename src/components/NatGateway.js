@@ -6,11 +6,11 @@ function NatGateway({ items }) {
     };
     const arrayFormater = (input) => {
         if (Array.isArray(input)) {
-            return input.map((i) =>
+            return input.map((i, index) =>
                 i === "" || null ? (
                     ""
                 ) : (
-                    <span>
+                    <span key={`${i}-${index}`}>
                         {i}
                         <br />
                     </span>
