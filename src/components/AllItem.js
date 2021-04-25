@@ -6,6 +6,8 @@ import AllSecurityGroups from "./AllSecurityGroup";
 import RouteTable from "./RouteTable";
 import InternetGateway from "./InternetGateway";
 import NatGateway from "./NatGateway";
+import Instances from "./Instances";
+import VPCPeering from "./VPCPeering";
 
 function AllItems({ match }) {
     useEffect(() => {
@@ -18,7 +20,7 @@ function AllItems({ match }) {
     const fetchItems = async () => {
         setIsLoading(true);
         const response = await fetch(
-            `http://localhost:5000/api/networks/vpc/?vpcId=${match.params.id}`
+            `http://localhost:5000/api/networks/vpc?vpcId=${match.params.id}`
         );
         if (response.ok) {
             const items = await response.json();
@@ -37,7 +39,9 @@ function AllItems({ match }) {
             <InternetGateway items={items[1]} />
             <Subnet items={items[2]} />
             <RouteTable items={items[3]} />
+            <VPCPeering items={items[7]} />
             <NatGateway items={items[5]} />
+            <Instances items={items[6]} />
             <AllSecurityGroups items={items[4]} />
         </div>
     ) : (
