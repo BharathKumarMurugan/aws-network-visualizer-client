@@ -28,9 +28,7 @@ function Jumbotron() {
             style={{ backgroundColor: "#eee" }}
         >
             <div className="container-fluid py-5">
-                <h1 className="display-5 fw-bold">
-                    AWS Infrastructure Visualizer
-                </h1>
+                <h1 className="display-5 fw-bold">AWS Network Visualizer</h1>
                 <div className="clearfix">
                     <p className="float-start">
                         Account ID:{" "}
