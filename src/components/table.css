@@ -15,6 +15,18 @@
     /* margin-bottom: 10rem; */
     animation: 1s spin infinite ease-in-out;
 }
+.running {
+    background-color: #198754;
+}
+.stopped {
+    background-color: #6c757d;
+}
+.terminated {
+    background-color: #dc3545;
+}
+.pending {
+    background-color: #ffc107;
+}
 
 @keyframes spin {
     to {
