@@ -4,13 +4,31 @@ function AllSecurityGroups({ items }) {
     const renderTableHeader = () => {
         return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 36;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
     const renderTableRow = () => {
         return items.map((sg) => {
             return (
                 <tr key={sg.Id}>
                     <td>{sg.Id}</td>
-                    <td>{sg.Name}</td>
-                    <td>{sg.Description}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={sg.Name}
+                    >
+                        {renderWithCharLimit(sg.Name)}
+                    </td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={sg.Description}
+                    >
+                        {renderWithCharLimit(sg.Description)}
+                    </td>
                 </tr>
             );
         });
