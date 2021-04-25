@@ -12,11 +12,13 @@ function App() {
             <div>
                 <NavBar />
                 <Switch>
-                    <Route path="/" exact component={Jumbotron} />
-                    <div className="container-fluid">
-                        <Route path="/vpc" exact component={AllVPC} />
-                        <Route path="/vpc/:id" component={AllItems} />
-                    </div>
+                    <React.Fragment>
+                        <Route path="/" exact component={Jumbotron} />
+                        <div className="container-fluid">
+                            <Route path="/vpc" exact component={AllVPC} />
+                            <Route path="/vpc/:id" component={AllItems} />
+                        </div>
+                    </React.Fragment>
                 </Switch>
             </div>
         </Router>
