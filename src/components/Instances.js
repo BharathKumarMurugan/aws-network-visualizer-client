@@ -1,34 +1,73 @@
-import React, { useEffect, useState } from "react";
-import Loader from "./Loader";
-function Instances() {
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-    const [items, setItems] = useState([]);
-    const [isLoading, setIsLoading, isError, setIsError] = useState(false);
-
-    const fetchItems = async () => {
-        setIsLoading(true);
-        const response = await fetch("");
-        if (response.ok) {
-            const items = await response.json();
-            console.log(items);
-            setItems(items);
-            setIsLoading(false);
-        } else {
-            setIsLoading(false);
-            setIsError(true);
-        }
+import React from "react";
+import "./table.css";
+function Instances({ items }) {
+    const renderTableHeader = () => {
+        return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
-    if (isLoading) return <Loader />;
-    if (isError) return <div>Error</div>;
+    const statusStyling = {
+        margin: "4px",
+        width: "15px",
+        height: "15px",
+        borderRadius: "50%",
+    };
+    const instnaceStatus = (status) => {
+        return <div style={statusStyling} className={status}></div>;
+    };
+    const instanceName = (name) => {
+        const MAX_CHAR_LENGTH = 24;
+        return name.length > MAX_CHAR_LENGTH
+            ? `${name.substring(0, MAX_CHAR_LENGTH)}...`
+            : name;
+    };
+    const renderTableRow = () => {
+        return items.map((ec2) => {
+            return (
+                <tr key={ec2.Id}>
+                    <td>{ec2.Id}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={ec2.Name}
+                    >
+                        {instanceName(ec2.Name)}
+                    </td>
+                    <td>{ec2.PrivateIpAddress}</td>
+                    <td>{ec2.PublicIpAddress}</td>
+                    <td>{ec2.SubnetId}</td>
+                    <td>{instnaceStatus(ec2.State)}</td>
+                </tr>
+            );
+        });
+    };
+
     return items.length > 0 ? (
-        <div>
-            <h2>Instances</h2>
+        <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+            <div className="card-body">
+                <h5 className="card-title">
+                    EC2 Instances{" "}
+                    <span className="badge rounded-pill bg-primary">
+                        {items.length}
+                    </span>
+                </h5>
+                <div className="table-reponsive">
+                    <table className="table table-hover">
+                        <thead className="thead-dark">
+                            <tr>{renderTableHeader()}</tr>
+                        </thead>
+                        <tbody>{renderTableRow()}</tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     ) : (
-        <div>0 Instances</div>
+        <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+            <h5 className="card-title">
+                EC2 Instances{" "}
+                <span className="badge rounded-pill bg-primary">
+                    {items.length}
+                </span>
+            </h5>
+        </div>
     );
 }
 
