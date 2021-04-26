@@ -1,56 +1,80 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-function NavBar() {
-    const NavStyle = {
-        color: "white",
-        textDecoration: "none",
+function RouteTable({ items }) {
+    const renderTableHeader = () => {
+        return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
-    return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="container-fluid">
-                <Link to="/" className="navbar-brand">
-                    Logo
-                </Link>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <Link to="/" style={NavStyle}>
-                            <li className="nav-item">
-                                <span className="nav-link">Home</span>
-                            </li>
-                        </Link>
-                        <Link to="/vpc" style={NavStyle}>
-                            <li className="nav-item">
-                                <span className="nav-link">VPC</span>
-                            </li>
-                        </Link>
-                        <Link to="/elb" style={NavStyle}>
-                            <li className="nav-item">
-                                <span className="nav-link">ELB</span>
-                            </li>
-                        </Link>
-                        <Link to="/elb" style={NavStyle}>
-                            <li className="nav-item">
-                                <span className="nav-link">
-                                    Tranist Gateway
-                                </span>
-                            </li>
-                        </Link>
-                    </ul>
+    const arrayFormater = (input) => {
+        if (Array.isArray(input)) {
+            return input.map((i, index) =>
+                i === "" || null ? (
+                    ""
+                ) : (
+                    <span key={`${i}-${index}`}>
+                        {i}
+                        <br />
+                    </span>
+                )
+            );
+        }
+    };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
+    const renderTableRow = () => {
+        return items.map((rt) => {
+            return (
+                <tr key={rt.Id}>
+                    <td>{rt.Id}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={rt.Name}
+                    >
+                        {renderWithCharLimit(rt.Name)}
+                    </td>
+                    <td>{arrayFormater(rt.SubnetAssociation)}</td>
+                    <td>{rt.Main}</td>
+                    <td>{arrayFormater(rt.RoutesDestination)}</td>
+                    <td>{arrayFormater(rt.RoutesTarget)}</td>
+                    <td>{arrayFormater(rt.RoutesState)}</td>
+                </tr>
+            );
+        });
+    };
+
+    return items.length > 0 ? (
+        <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+            <div className="card-body">
+                <h5 className="card-title">
+                    Route Table{" "}
+                    <span className="badge rounded-pill bg-primary">
+                        {items.length}
+                    </span>
+                </h5>
+                <div className="table-reponsive">
+                    <table className="table table-hover">
+                        <thead className="thead-dark">
+                            <tr>{renderTableHeader()}</tr>
+                        </thead>
+                        <tbody>{renderTableRow()}</tbody>
+                    </table>
                 </div>
             </div>
-        </nav>
+        </div>
+    ) : (
+        <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+            <h5 className="card-title">
+                Route Table{" "}
+                <span className="badge rounded-pill bg-primary">
+                    {items.length}
+                </span>
+            </h5>
+        </div>
     );
 }
-export default NavBar;
+
+export default RouteTable;
