@@ -10,10 +10,10 @@ function Instances({ items }) {
         height: "15px",
         borderRadius: "50%",
     };
-    const instnaceStatus = (status) => {
+    const instanceStatus = (status) => {
         return <div style={statusStyling} className={status}></div>;
     };
-    const instanceName = (name) => {
+    const renderWithCharLimit = (name) => {
         const MAX_CHAR_LENGTH = 24;
         return name.length > MAX_CHAR_LENGTH
             ? `${name.substring(0, MAX_CHAR_LENGTH)}...`
@@ -23,18 +23,18 @@ function Instances({ items }) {
         return items.map((ec2) => {
             return (
                 <tr key={ec2.Id}>
+                    <td>{instanceStatus(ec2.State)}</td>
                     <td>{ec2.Id}</td>
                     <td
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title={ec2.Name}
                     >
-                        {instanceName(ec2.Name)}
+                        {renderWithCharLimit(ec2.Name)}
                     </td>
                     <td>{ec2.PrivateIpAddress}</td>
                     <td>{ec2.PublicIpAddress}</td>
                     <td>{ec2.SubnetId}</td>
-                    <td>{instnaceStatus(ec2.State)}</td>
                 </tr>
             );
         });
