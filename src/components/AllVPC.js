@@ -23,6 +23,23 @@ class AllVPC extends Component {
             this.setState({ isError: true, isLoading: false });
         }
     }
+    statusStyling = () => {
+        return {
+            margin: "4px",
+            width: "15px",
+            height: "15px",
+            borderRadius: "50%",
+        };
+    };
+    vpcStatus = (status) => {
+        return <div style={this.statusStyling()} className={status}></div>;
+    };
+    renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
     renderTableHeader = () => {
         return Object.keys(this.state.vpcs[0]).map((attr) => (
             <th key={attr}>{attr}</th>
@@ -32,6 +49,7 @@ class AllVPC extends Component {
         return this.state.vpcs.map((vpc) => {
             return (
                 <tr key={vpc.Id}>
+                    <td>{this.vpcStatus(vpc.State)}</td>
                     <td>
                         <Link
                             to={`/vpc/${vpc.Id}`}
@@ -40,11 +58,16 @@ class AllVPC extends Component {
                             {vpc.Id}
                         </Link>
                     </td>
-                    <td>{vpc.Name}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={vpc.Name}
+                    >
+                        {this.renderWithCharLimit(vpc.Name)}
+                    </td>
                     <td>{vpc.CidrBlock}</td>
                     <td>{vpc.Tenancy}</td>
                     <td>{vpc.DhcpOptionsId}</td>
-                    <td>{vpc.State}</td>
                 </tr>
             );
         });
@@ -77,7 +100,14 @@ class AllVPC extends Component {
                 </div>
             </div>
         ) : (
-            <div>0 VPCs</div>
+            <div className="card border-light shadow-sm p-2 mb-5 bg-body rounded">
+                <h5 className="card-title">
+                    VPC{" "}
+                    <span className="badge rounded-pill bg-primary">
+                        {vpcs.length}
+                    </span>
+                </h5>
+            </div>
         );
     }
 }
