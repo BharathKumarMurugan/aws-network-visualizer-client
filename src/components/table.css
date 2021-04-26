@@ -15,7 +15,9 @@
     /* margin-bottom: 10rem; */
     animation: 1s spin infinite ease-in-out;
 }
-.running {
+.running,
+.active,
+.available {
     background-color: #198754;
 }
 .stopped {
