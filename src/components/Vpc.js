@@ -4,16 +4,25 @@ function Vpc({ items }) {
     const renderTableHeader = () => {
         return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
+    const statusStyling = {
+        margin: "4px",
+        width: "15px",
+        height: "15px",
+        borderRadius: "50%",
+    };
+    const vpcStatus = (status) => {
+        return <div style={statusStyling} className={status}></div>;
+    };
     const renderTableRow = () => {
         return items.map((vpc) => {
             return (
                 <tr key={vpc.Id}>
+                    <td>{vpcStatus(vpc.State)}</td>
                     <td>{vpc.Id}</td>
                     <td>{vpc.Name}</td>
                     <td>{vpc.CidrBlock}</td>
                     <td>{vpc.Tenancy}</td>
                     <td>{vpc.DhcpOptionsId}</td>
-                    <td>{vpc.State}</td>
                 </tr>
             );
         });
