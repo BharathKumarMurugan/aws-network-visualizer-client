@@ -1,6 +1,21 @@
 import React from "react";
 
 function InternetGateway({ items }) {
+    const statusStyling = {
+        margin: "4px",
+        width: "15px",
+        height: "15px",
+        borderRadius: "50%",
+    };
+    const igwStatus = (status) => {
+        return <div style={statusStyling} className={status}></div>;
+    };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
     const renderTableHeader = () => {
         return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
@@ -8,9 +23,15 @@ function InternetGateway({ items }) {
         return items.map((igw) => {
             return (
                 <tr key={igw.Id}>
+                    <td>{igwStatus(igw.State)}</td>
                     <td>{igw.Id}</td>
-                    <td>{igw.Name}</td>
-                    <td>{igw.State}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={igw.Name}
+                    >
+                        {renderWithCharLimit(igw.Name)}
+                    </td>
                 </tr>
             );
         });
