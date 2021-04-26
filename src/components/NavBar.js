@@ -35,6 +35,18 @@ function NavBar() {
                                 <span className="nav-link">VPC</span>
                             </li>
                         </Link>
+                        <Link to="/elb" style={NavStyle}>
+                            <li className="nav-item">
+                                <span className="nav-link">ELB</span>
+                            </li>
+                        </Link>
+                        <Link to="/elb" style={NavStyle}>
+                            <li className="nav-item">
+                                <span className="nav-link">
+                                    Tranist Gateway
+                                </span>
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>
