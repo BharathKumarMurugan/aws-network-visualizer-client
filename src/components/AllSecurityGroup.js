@@ -5,7 +5,7 @@ function AllSecurityGroups({ items }) {
         return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
     const renderWithCharLimit = (value) => {
-        const MAX_CHAR_LENGTH = 36;
+        const MAX_CHAR_LENGTH = 24;
         return value.length > MAX_CHAR_LENGTH
             ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
             : value;
@@ -20,7 +20,7 @@ function AllSecurityGroups({ items }) {
                         data-bs-placement="top"
                         title={sg.Name}
                     >
-                        {renderWithCharLimit(sg.Name)}
+                        {sg.Name ? renderWithCharLimit(sg.Name) : "-"}
                     </td>
                     <td
                         data-bs-toggle="tooltip"

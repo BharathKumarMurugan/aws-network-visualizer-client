@@ -55,7 +55,7 @@ function TransitGateway() {
         return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
     const renderTableRow = () => {
-        return items.map((lb) => {
+        return items.map((transit) => {
             return (
                 <tr key={transit.Id}>
                     <td>{transit.Id}</td>
@@ -65,7 +65,7 @@ function TransitGateway() {
                         data-bs-placement="top"
                         title={transit.Name}
                     >
-                        {renderWithCharLimit(transit.Name)}
+                        {transit.Name ? renderWithCharLimit(transit.Name) : "-"}
                     </td>
                     <td>{arrayFormater(transit.TransitGatewayCIDR)}</td>
                     <td>{transit.DnsSupport}</td>

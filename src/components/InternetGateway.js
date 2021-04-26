@@ -30,7 +30,7 @@ function InternetGateway({ items }) {
                         data-bs-placement="top"
                         title={igw.Name}
                     >
-                        {renderWithCharLimit(igw.Name)}
+                        {igw.Name ? renderWithCharLimit(igw.Name) : "-"}
                     </td>
                 </tr>
             );

@@ -12,7 +12,6 @@ function Jumbotron() {
         const response = await fetch("http://localhost:5000/api/security/");
         if (response.ok) {
             const item = await response.json();
-            console.log(item);
             setItem(item);
             setIsLoading(false);
         } else {

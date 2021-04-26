@@ -4,12 +4,20 @@ function Subnet({ items }) {
     const renderTableHeader = () => {
         return Object.keys(items[0]).map((attr) => <th key={attr}>{attr}</th>);
     };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
     const renderTableRow = () => {
         return items.map((subnet) => {
             return (
                 <tr key={subnet.Id}>
                     <td>{subnet.Id}</td>
-                    <td>{subnet.Name}</td>
+                    <td>
+                        {subnet.Name ? renderWithCharLimit(subnet.Name) : "-"}
+                    </td>
                     <td>{subnet.AZ}</td>
                     <td>{subnet.CidrBlock}</td>
                     <td>{subnet.State}</td>

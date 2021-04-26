@@ -30,7 +30,7 @@ function Instances({ items }) {
                         data-bs-placement="top"
                         title={ec2.Name}
                     >
-                        {renderWithCharLimit(ec2.Name)}
+                        {ec2.Name ? renderWithCharLimit(ec2.Name) : "-"}
                     </td>
                     <td>{ec2.PrivateIpAddress}</td>
                     <td>{ec2.PublicIpAddress}</td>

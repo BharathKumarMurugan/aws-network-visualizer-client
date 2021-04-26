@@ -18,12 +18,24 @@ function RouteTable({ items }) {
             );
         }
     };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
     const renderTableRow = () => {
         return items.map((rt) => {
             return (
                 <tr key={rt.Id}>
                     <td>{rt.Id}</td>
-                    <td>{rt.Name}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={rt.Name}
+                    >
+                        {rt.Name ? renderWithCharLimit(rt.Name) : "-"}
+                    </td>
                     <td>{arrayFormater(rt.SubnetAssociation)}</td>
                     <td>{rt.Main}</td>
                     <td>{arrayFormater(rt.RoutesDestination)}</td>

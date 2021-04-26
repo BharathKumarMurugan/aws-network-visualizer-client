@@ -63,7 +63,7 @@ class AllVPC extends Component {
                         data-bs-placement="top"
                         title={vpc.Name}
                     >
-                        {this.renderWithCharLimit(vpc.Name)}
+                        {vpc.Name ? this.renderWithCharLimit(vpc.Name) : "-"}
                     </td>
                     <td>{vpc.CidrBlock}</td>
                     <td>{vpc.Tenancy}</td>

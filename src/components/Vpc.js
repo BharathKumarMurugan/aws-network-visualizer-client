@@ -13,13 +13,19 @@ function Vpc({ items }) {
     const vpcStatus = (status) => {
         return <div style={statusStyling} className={status}></div>;
     };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
     const renderTableRow = () => {
         return items.map((vpc) => {
             return (
                 <tr key={vpc.Id}>
                     <td>{vpcStatus(vpc.State)}</td>
                     <td>{vpc.Id}</td>
-                    <td>{vpc.Name}</td>
+                    <td>{vpc.Name ? renderWithCharLimit(vpc.Name) : "-"}</td>
                     <td>{vpc.CidrBlock}</td>
                     <td>{vpc.Tenancy}</td>
                     <td>{vpc.DhcpOptionsId}</td>

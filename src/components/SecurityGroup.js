@@ -13,7 +13,6 @@ function SecurityGroup() {
         const response = await fetch("");
         if (response.ok) {
             const items = await response.json();
-            console.log(items);
             setItems(items);
             setIsLoading(false);
         } else {

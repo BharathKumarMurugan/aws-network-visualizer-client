@@ -16,7 +16,6 @@ function LoadBalancer() {
         );
         if (response.ok) {
             const items = await response.json();
-            console.log(items);
             setItems(items);
             setIsLoading(false);
         } else {
@@ -66,7 +65,9 @@ function LoadBalancer() {
                         data-bs-placement="top"
                         title={lb.LoadBalancerName}
                     >
-                        {renderWithCharLimit(lb.LoadBalancerName)}
+                        {lb.LoadBalancerName
+                            ? renderWithCharLimit(lb.LoadBalancerName)
+                            : "-"}
                     </td>
                     <td>{lb.Type}</td>
                     <td>{lb.Scheme}</td>
@@ -75,7 +76,7 @@ function LoadBalancer() {
                         data-bs-placement="top"
                         title={lb.DNS}
                     >
-                        {renderWithCharLimit(lb.DNS)}
+                        {lb.DNS ? renderWithCharLimit(lb.DNS) : "-"}
                     </td>
                     <td>
                         <Link

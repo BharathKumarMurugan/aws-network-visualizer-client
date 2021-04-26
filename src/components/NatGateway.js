@@ -44,7 +44,7 @@ function NatGateway({ items }) {
                         data-bs-placement="top"
                         title={nat.Name}
                     >
-                        {renderWithCharLimit(nat.Name)}
+                        {nat.Name ? renderWithCharLimit(nat.Name) : "-"}
                     </td>
                     <td>{arrayFormater(nat.PublicIP)}</td>
                     <td>{arrayFormater(nat.PrivateIP)}</td>

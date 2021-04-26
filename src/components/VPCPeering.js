@@ -23,7 +23,7 @@ function VPCPeering({ items }) {
                         data-bs-placement="top"
                         title={peer.Name}
                     >
-                        {renderWithCharLimit(peer.Name)}
+                        {peer.Name ? renderWithCharLimit(peer.Name) : "-"}
                     </td>
                     <td>{peer.AccepterVPC}</td>
                     <td>{peer.RequesterVPC}</td>
