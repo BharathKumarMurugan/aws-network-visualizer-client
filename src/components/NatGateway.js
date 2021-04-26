@@ -18,16 +18,37 @@ function NatGateway({ items }) {
             );
         }
     };
+    const renderWithCharLimit = (value) => {
+        const MAX_CHAR_LENGTH = 24;
+        return value.length > MAX_CHAR_LENGTH
+            ? `${value.substring(0, MAX_CHAR_LENGTH)}...`
+            : value;
+    };
+    const statusStyling = {
+        margin: "4px",
+        width: "15px",
+        height: "15px",
+        borderRadius: "50%",
+    };
+    const natStatus = (status) => {
+        return <div style={statusStyling} className={status}></div>;
+    };
     const renderTableRow = () => {
         return items.map((nat) => {
             return (
                 <tr key={nat.Id}>
+                    <td>{natStatus(nat.State)}</td>
                     <td>{nat.Id}</td>
-                    <td>{nat.Name}</td>
+                    <td
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={nat.Name}
+                    >
+                        {renderWithCharLimit(nat.Name)}
+                    </td>
                     <td>{arrayFormater(nat.PublicIP)}</td>
                     <td>{arrayFormater(nat.PrivateIP)}</td>
                     <td>{nat.SubnetId}</td>
-                    <td>{nat.State}</td>
                 </tr>
             );
         });
