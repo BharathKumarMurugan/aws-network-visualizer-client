@@ -47,6 +47,18 @@ function NavBar() {
                                 </span>
                             </li>
                         </Link>
+                        <Link to="/vpcpeering" style={NavStyle}>
+                            <li className="nav-item">
+                                <span className="nav-link">VPC Peering</span>
+                            </li>
+                        </Link>
+                        <Link to="/vpn" style={NavStyle}>
+                            <li className="nav-item">
+                                <span className="nav-link">
+                                    VPN Connections
+                                </span>
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>

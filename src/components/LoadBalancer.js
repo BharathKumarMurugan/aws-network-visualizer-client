@@ -29,7 +29,7 @@ function LoadBalancer() {
                 i === "" || null ? (
                     ""
                 ) : (
-                    <span key={`${i}-${index}`}>
+                    <span key={`${i}-${index + 1}`}>
                         {i}
                         <br />
                     </span>
