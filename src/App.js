@@ -6,7 +6,9 @@ import Jumbotron from "./components/Jumbotron";
 import AllItems from "./components/AllItem";
 import LoadBalancer from "./components/LoadBalancer";
 import TransitGateway from "./components/TransitGateway";
+import AllVPCPeers from "./components/AllVPCPeers";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AllVPN from "./components/AllVPN";
 
 function App() {
     return (
@@ -16,14 +18,23 @@ function App() {
                 <Switch>
                     <React.Fragment>
                         <Route path="/" exact component={Jumbotron} />
-                        <div className="container-fluid">
+                        <div
+                            className="container-fluid"
+                            style={{ fontSize: "12px" }}
+                        >
                             <Route path="/vpc" exact component={AllVPC} />
-                            <Route path="/vpc/:id" component={AllItems} />
+                            <Route path="/vpc/:id" exact component={AllItems} />
                             <Route path="/elb" exact component={LoadBalancer} />
                             <Route
                                 path="/transitgateway"
                                 component={TransitGateway}
                             />
+                            <Route
+                                path="/vpcpeering"
+                                exact
+                                component={AllVPCPeers}
+                            />
+                            <Route path="/vpn" exact component={AllVPN} />
                         </div>
                     </React.Fragment>
                 </Switch>
